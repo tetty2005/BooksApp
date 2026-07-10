@@ -1,0 +1,19 @@
+<button type="button" (click)="fileInput.click()">Choose File</button>
+
+<input 
+  type="file" 
+  #fileInput 
+  style="display: none" 
+  (change)="onFileSelected($event)"
+  accept=".xml"
+/>
+
+@if (selectedFile) {
+    <p>Selected file: {{ selectedFile.name }}</p>
+}
+
+@if (!books()) {
+    <div>There are no books to display.
+        Please add a book or download a file with books.</div>
+}
+
