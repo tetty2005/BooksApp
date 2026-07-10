@@ -1,0 +1,35 @@
+<mat-form-field>
+  <mat-label>Search by title</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Enter Book's title" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="displayedBooks" class="mat-shadow-2 books-table">
+  <!-- Author Column -->
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef>Author</th>
+    <td mat-cell *matCellDef="let book">{{ book.author.name }} {{ book.author.surname }}</td>
+  </ng-container>
+
+  <!-- Title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Book's Title</th>
+    <td mat-cell *matCellDef="let book">{{ book.title }}</td>
+  </ng-container>
+
+  <!-- Pages Column -->
+  <ng-container matColumnDef="pages">
+    <th mat-header-cell *matHeaderCellDef>Pages</th>
+    <td mat-cell *matCellDef="let book">{{ book.pages }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+      mat-row
+      (click)="onBook(row)"
+      *matRowDef="let row; columns: displayedColumns;"
+  ></tr>
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">There are no books matching the title with "{{ input.value }}"</td>
+  </tr>
+</table>
+
