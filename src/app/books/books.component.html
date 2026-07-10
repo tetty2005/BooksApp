@@ -1,11 +1,5 @@
-<h1>Books List</h1>
+<h1 class="page-title">Books List</h1>
 
-<section>
-    @if (!books().length) {
-    <div>There are no books to display.</div>
-    <div><p>Please add a book or download a file with books.</p></div>
-}
-</section>
 <section class="actions">
     <div>
         <button matButton="filled" type="button" (click)="fileInput.click()">Choose File</button>
@@ -26,6 +20,17 @@
     (change)="onFileSelected($event)"
     accept=".xml"
     />
+</section>
+
+<section class="empty-list">
+    @if (!books().length) {
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title> There are no books to display.</mat-card-title>
+                <mat-card-subtitle>Please add a book or download a file with books.</mat-card-subtitle>
+            </mat-card-header>
+        </mat-card>
+    }
 </section>
 
 @if (books().length) {

@@ -7,12 +7,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { Subscription } from 'rxjs';
 
 import { BooksListComponent } from './components/books-list/books-list.component';
 import { Book } from './interfaces/Book';
 import { AddBookDialogComponent } from './components/add-book-dialog/add-book-dialog.component';
 import { BookModel } from './interfaces/BookModel';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-books',
@@ -23,7 +24,8 @@ import { Subscription } from 'rxjs';
     MatButtonModule,
     BooksListComponent,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
   ],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css',
@@ -32,6 +34,7 @@ export class BooksComponent implements OnDestroy {
   books = signal<Book[]>([]);
 
   private subscription = new Subscription();
+  
   readonly dialog = inject(MatDialog);
 
   ngOnDestroy(): void {

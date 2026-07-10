@@ -1,5 +1,24 @@
+h1.page-title {
+    color: #516687;
+    padding-bottom: 20px;
+    border-bottom-style: solid;
+    border-bottom-color: #B7C9E2;
+}
 section.actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 40px;
+}
+
+section.empty-list {
+  margin-top: 40px;
+
+  mat-card {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 40px;
+  }
 }
