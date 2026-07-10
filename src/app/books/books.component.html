@@ -1,19 +1,33 @@
-<button type="button" (click)="fileInput.click()">Choose File</button>
+<h1>Books List</h1>
 
-<input 
-  type="file" 
-  #fileInput 
-  style="display: none" 
-  (change)="onFileSelected($event)"
-  accept=".xml"
-/>
-
-@if (selectedFile) {
-    <p>Selected file: {{ selectedFile.name }}</p>
+<section>
+    @if (!books().length) {
+    <div>There are no books to display.</div>
+    <div><p>Please add a book or download a file with books.</p></div>
 }
+</section>
+<section class="actions">
+    <div>
+        <button matButton="filled" type="button" (click)="fileInput.click()">Choose File</button>
+    </div>
+    <div>
+        <button matButton="filled" extended (click)="addBook()">
+            <mat-icon>control_point</mat-icon>
+            Add a new book
+        </button>
+    </div>
+</section>
 
-@if (!books()) {
-    <div>There are no books to display.
-        Please add a book or download a file with books.</div>
+<section>
+    <input 
+    type="file" 
+    #fileInput 
+    style="display: none" 
+    (change)="onFileSelected($event)"
+    accept=".xml"
+    />
+</section>
+
+@if (books().length) {
+    <app-books-list [books]="books()"></app-books-list>
 }
-

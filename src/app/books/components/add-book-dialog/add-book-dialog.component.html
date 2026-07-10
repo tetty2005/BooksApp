@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Add New Book</h2>
+<mat-dialog-content class="mat-typography">
+    <form #bookForm="ngForm" (ngSubmit)="createBook()" class="d-flex" autocomplete="off">
+        <h3>Book's author:</h3>
+            <input name="authorName"
+                [(ngModel)]="bookData().authorName"
+                class="form-control me-2"
+                placeholder="Enter a name">
+            <input name="authorSurname"
+                [(ngModel)]="bookData().authorSurname"
+                class="form-control me-2"
+                placeholder="Enter a surname"
+                type="text">
+
+        <h3>Book's title:</h3>
+            <input name="title"
+                [(ngModel)]="bookData().title"
+                class="form-control me-2"
+                placeholder="Enter a title">
+
+        <h3>A number of pages:</h3>
+            <input name="pages"
+                [(ngModel)]="bookData().pages"
+                class="form-control me-2"
+                placeholder="Enter a number of Pages"
+                type="number">
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button matButton="tonal" (click)="onCancel()">Cancel</button>
+    <button
+        matButton="filled"
+        [mat-dialog-close]="bookForm.value"
+        cdkFocusInitial>
+            Save
+    </button>
+</mat-dialog-actions>
