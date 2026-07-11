@@ -22,3 +22,11 @@ section.empty-list {
     padding: 20px 0 40px;
   }
 }
+
+.download-section {
+  margin-top: 20px;
+
+  button {
+    background-color: #158a53;
+  }
+}

@@ -47,6 +47,7 @@ mat-form-field.search-field {
     width: 48%;
     margin-bottom: 20px;
     padding: 0 20px;
+    border-style: none;
 
     mat-card-header {
       padding: 10px 16px 16px;
@@ -71,6 +72,7 @@ mat-form-field.search-field {
       button {
         flex: 1;
         margin: 0 5px;
+        font-weight: 200;
       }
     }
   }

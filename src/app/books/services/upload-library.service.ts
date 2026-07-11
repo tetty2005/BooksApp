@@ -6,7 +6,7 @@ import { Book } from '../interfaces/Book';
 @Injectable({
   providedIn: 'root',
 })
-export class ParserService {
+export class UploadLibraryService {
   books = signal<Book[]>([]);
 
   setBooksFromFile(event: Event): void {

@@ -3,7 +3,7 @@
 <section class="actions">
   <div>
     <button matButton="filled" type="button" (click)="fileInput.click()">
-      Choose File
+      Upload file with library
     </button>
   </div>
   <div>
@@ -30,7 +30,8 @@
       <mat-card-header>
         <mat-card-title> There are no books to display.</mat-card-title>
         <mat-card-subtitle
-          >Please add a book or download a file with books.</mat-card-subtitle
+          >Please add a book or upload an XML file with books from your
+          computer.</mat-card-subtitle
         >
       </mat-card-header>
     </mat-card>
@@ -42,4 +43,10 @@
     [books]="books()"
     (selectBook)="selectBook($event)"
   ></app-books-list>
+
+  <section class="download-section">
+    <button matButton="filled" type="button" (click)="convertAndSaveXml()">
+      Save books and download XML file
+    </button>
+  </section>
 }

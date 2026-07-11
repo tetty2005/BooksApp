@@ -10,8 +10,9 @@ import { MatCardModule } from '@angular/material/card';
 
 import { BooksListComponent } from './components/books-list/books-list.component';
 import { Book } from './interfaces/Book';
-import { ParserService } from './services/parser.service';
+import { UploadLibraryService } from './services/upload-library.service';
 import { AddEditBookService } from './services/add-edit-book.service';
+import { DownloadLibraryService } from './services/download-library.service';
 
 @Component({
   selector: 'app-books',
@@ -29,8 +30,9 @@ import { AddEditBookService } from './services/add-edit-book.service';
   styleUrl: './books.component.css',
 })
 export class BooksComponent implements OnDestroy {
-  parserService = inject(ParserService);
-  books = this.parserService.books;
+  uploadService = inject(UploadLibraryService);
+  downloadService = inject(DownloadLibraryService);
+  books = this.uploadService.books;
 
   private addEditBookService = inject(AddEditBookService);
 
@@ -41,7 +43,7 @@ export class BooksComponent implements OnDestroy {
   }
 
   onFileSelected(event: Event): void {
-    this.parserService.setBooksFromFile(event);
+    this.uploadService.setBooksFromFile(event);
   }
 
   addBook(): void {
@@ -50,5 +52,9 @@ export class BooksComponent implements OnDestroy {
 
   selectBook(book: Book): void {
     this.addEditBookService.editBook(book, this.books);
+  }
+
+  convertAndSaveXml(): void {
+    this.downloadService.convertAndSaveXml(this.books);
   }
 }
