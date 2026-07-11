@@ -34,5 +34,5 @@
 </section>
 
 @if (books().length) {
-    <app-books-list [books]="books()"></app-books-list>
+    <app-books-list [books]="books()" (selectBook)="selectBook($event)"></app-books-list>
 }

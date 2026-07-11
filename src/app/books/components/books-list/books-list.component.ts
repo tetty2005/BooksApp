@@ -1,7 +1,8 @@
-import { Component, effect, input } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Book } from '../../interfaces/Book';
 
@@ -14,8 +15,11 @@ import { Book } from '../../interfaces/Book';
 export class BooksListComponent {
   displayedColumns: string[] = ['author', 'title', 'pages'];
   books = input.required<Book[]>();
+  selectBook = output<Book>();
   clickedRows = new Set<Book>();
   displayedBooks = new MatTableDataSource<Book>([]);
+
+  readonly dialog = inject(MatDialog);
 
   constructor() {
     effect(() => {
@@ -33,6 +37,6 @@ export class BooksListComponent {
   }
 
   onBook(book: Book): void {
-    // open edit book dialog
+    this.selectBook.emit(book);
   }
 }

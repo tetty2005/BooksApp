@@ -3,4 +3,6 @@ export interface BookModel {
   authorSurname: string;
   title: string;
   pages: number;
+  id?: string;
+  isDeleted?: boolean;
 }

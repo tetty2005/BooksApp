@@ -1,36 +1,99 @@
-<h2 mat-dialog-title>Add New Book</h2>
+@if (bookData().id) {
+    <h2 mat-dialog-title>Edit Book</h2>
+} @else {
+    <h2 mat-dialog-title>Add New Book</h2>
+}
 <mat-dialog-content class="mat-typography">
-    <form #bookForm="ngForm" (ngSubmit)="createBook()" class="d-flex" autocomplete="off">
+    <form #bookForm="ngForm" class="book-form d-flex" autocomplete="off">
         <h3>Book's author:</h3>
+        <section>
+            <label for="authorName" class="required-mark">Name:</label><br>
             <input name="authorName"
                 [(ngModel)]="bookData().authorName"
+                required
                 class="form-control me-2"
+                #nameInput="ngModel"
                 placeholder="Enter a name">
+            @if (nameInput.invalid && (nameInput.dirty || nameInput.touched)) {
+              <span class="error-messages">
+                @if (nameInput.errors?.['required']) {
+                  <span>Name is required.</span>
+                }
+              </span>
+            }<br>
+                
+            <label for="authorSurname" class="required-mark">Surname:</label><br>
             <input name="authorSurname"
                 [(ngModel)]="bookData().authorSurname"
+                required
                 class="form-control me-2"
-                placeholder="Enter a surname"
-                type="text">
+                #surnameInput="ngModel"
+                placeholder="Enter a surname">
+            @if (surnameInput.invalid && (surnameInput.dirty || surnameInput.touched)) {
+              <span class="error-messages">
+                @if (surnameInput.errors?.['required']) {
+                  <span>Surname is required.</span>
+                }
+              </span>
+            }
+        </section>
+        
+        <mat-divider></mat-divider>
 
-        <h3>Book's title:</h3>
+        <h3 class="required-mark">Book's title:</h3>
             <input name="title"
                 [(ngModel)]="bookData().title"
+                required
                 class="form-control me-2"
+                #titleInput="ngModel"
                 placeholder="Enter a title">
 
-        <h3>A number of pages:</h3>
+            @if (titleInput.invalid && (titleInput.dirty || titleInput.touched)) {
+              <span class="error-messages">
+                @if (titleInput.errors?.['required']) {
+                  <span>Title is required.</span>
+                }
+              </span>
+            }
+
+        <mat-divider></mat-divider>
+
+        <h3 class="required-mark">A number of pages:</h3>
             <input name="pages"
                 [(ngModel)]="bookData().pages"
+                required
                 class="form-control me-2"
                 placeholder="Enter a number of Pages"
+                #pagesInput="ngModel"
+                min="1"
                 type="number">
+
+            @if (pagesInput.invalid && (pagesInput.dirty || pagesInput.touched)) {
+              <span class="error-messages">
+                @if (pagesInput.errors?.['required']) {
+                  <span>Pages are required.</span>
+                }
+                @if (pagesInput.errors?.['min']) {
+                  <span>Pages must be at least 1.</span>
+                }
+              </span>
+            }
     </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button matButton="tonal" (click)="onCancel()">Cancel</button>
+    @if (bookData().id) {
+        <button matButton="tonal" class="delete-btn" (click)="onDelete()">
+            Delete a book
+        </button>
+    }
+    <button matButton="tonal" (click)="onCancel()">
+        Cancel
+    </button>
+
     <button
         matButton="filled"
-        [mat-dialog-close]="bookForm.value"
+        [mat-dialog-close]="bookData()"
+        [disabled]="bookForm.invalid"
         cdkFocusInitial>
             Save
     </button>

@@ -11,6 +11,7 @@ import {
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDivider } from '@angular/material/divider';
 
 import { BookModel } from '../../interfaces/BookModel';
 
@@ -26,7 +27,8 @@ import { BookModel } from '../../interfaces/BookModel';
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatDialogClose
+    MatDialogClose,
+    MatDivider
   ],
 })
 export class AddBookDialogComponent {
@@ -38,7 +40,8 @@ export class AddBookDialogComponent {
     this.dialogRef.close();
   }
 
-  createBook(): void {
+  onDelete(): void {
+    this.bookData().isDeleted = true;
     this.dialogRef.close(this.bookData());
   }
 }
