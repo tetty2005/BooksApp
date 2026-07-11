@@ -1,14 +1,35 @@
-<mat-form-field>
-  <mat-label>Search by title</mat-label>
-  <input
-    matInput (keyup)="applyFilter($event)"
-    placeholder="Enter Book's title"
-    #input>
-</mat-form-field>
+<section class="search-section">
+  <!-- Filter Section -->
+  <mat-card appearance="outlined">
+    <mat-card-header>Search books by title:</mat-card-header>
+    <mat-form-field class="search-field">
+      <input
+        matInput
+        (keyup)="filterBooks($event)"
+        placeholder="Enter a title"
+        #input
+      />
+    </mat-form-field>
+  </mat-card>
 
-<table
-  mat-table [dataSource]="displayedBooks"
-  class="mat-shadow-2 books-table">
+  <!-- Sort Section -->
+  <mat-card appearance="outlined">
+    <mat-card-header>Sort books:</mat-card-header>
+    <mat-card-content class="sort-buttons">
+      <button matButton="tonal" (click)="sortBooks(BookAttributes.Author)">
+        Sort <br />by author
+      </button>
+      <button matButton="tonal" (click)="sortBooks(BookAttributes.Title)">
+        Sort <br />by title
+      </button>
+      <button matButton="tonal" (click)="sortBooks(BookAttributes.Pages)">
+        Sort <br />by pages
+      </button>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<table mat-table [dataSource]="displayedBooks" class="mat-shadow-2 books-table">
   <!-- Author Column -->
   <ng-container matColumnDef="author">
     <th mat-header-cell *matHeaderCellDef>Author</th>
@@ -31,9 +52,9 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr
-      mat-row
-      (click)="onBook(row)"
-      *matRowDef="let row; columns: displayedColumns;"
+    mat-row
+    (click)="onBook(row)"
+    *matRowDef="let row; columns: displayedColumns"
   ></tr>
   <tr class="mat-row" *matNoDataRow>
     <td class="mat-cell" colspan="4">
@@ -41,4 +62,3 @@
     </td>
   </tr>
 </table>
-

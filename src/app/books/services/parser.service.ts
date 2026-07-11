@@ -4,14 +4,14 @@ import * as xml2js from 'xml2js';
 import { Book } from '../interfaces/Book';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ParserService {
   books = signal<Book[]>([]);
-  
+
   setBooksFromFile(event: Event): void {
     const input = event.target as HTMLInputElement;
-    
+
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
       const reader = new FileReader();
@@ -29,7 +29,7 @@ export class ParserService {
     const parser = new xml2js.Parser({
       attrkey: 'info',
       explicitArray: false,
-      trim: true
+      trim: true,
     });
 
     parser.parseString(xml, (err, result) => {

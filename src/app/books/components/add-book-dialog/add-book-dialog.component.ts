@@ -28,7 +28,7 @@ import { BookModel } from '../../interfaces/BookModel';
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
-    MatDivider
+    MatDivider,
   ],
 })
 export class AddBookDialogComponent {

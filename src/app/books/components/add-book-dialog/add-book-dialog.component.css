@@ -1,33 +1,33 @@
 .mat-mdc-dialog-content {
-    width: 400px;
-    padding: var(--mat-dialog-with-actions-content-padding, 10px 40px);
-    background-color:#e9eef5;
-    border-bottom-style: solid;
-    border-top-style: solid;
-    border-color: #B7C9E2;
+  width: 400px;
+  padding: var(--mat-dialog-with-actions-content-padding, 10px 40px);
+  background-color: #e9eef5;
+  border-bottom-style: solid;
+  border-top-style: solid;
+  border-color: #b7c9e2;
 }
 
 .book-form {
-    input {
-        margin: 8px;
-        padding: 5px;
-    }
+  input {
+    margin: 8px;
+    padding: 5px;
+  }
 
-    mat-divider {
-        margin-top: 20px;
-    }
+  mat-divider {
+    margin-top: 20px;
+  }
 }
 
 button.delete-btn {
-    color: white;
-    background-color: #d83312;
-    margin-right: 20px
+  color: white;
+  background-color: #d83312;
+  margin-right: 20px;
 }
 
 span.error-messages span {
-    margin: 0;
-    color: red;
-    font-size: 12px;
+  margin: 0;
+  color: red;
+  font-size: 12px;
 }
 
 .required-mark::after {
@@ -37,4 +37,14 @@ span.error-messages span {
 
 h3.required-mark {
   margin-bottom: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

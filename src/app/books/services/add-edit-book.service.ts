@@ -7,7 +7,7 @@ import { AddBookDialogComponent } from '../components/add-book-dialog/add-book-d
 import { BookModel } from '../interfaces/BookModel';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AddEditBookService {
   subscription = new Subscription();
@@ -27,34 +27,50 @@ export class AddEditBookService {
   }
 
   private openDialog(data: BookModel, books: WritableSignal<Book[]>): void {
-    const dialogRef = this.dialog.open(
-      AddBookDialogComponent,
-      { data }
-    );
+    const dialogRef = this.dialog.open(AddBookDialogComponent, { data });
 
-    this.subscription.add(dialogRef.afterClosed().subscribe(data => {
-      if (data !== undefined) {
-        const book = this.getBookFromDialogData(data, books);
+    this.subscription.add(
+      dialogRef.afterClosed().subscribe((data) => {
+        if (data !== undefined) {
+          const book = this.getBookFromDialogData(data, books);
 
-        if (data.isDeleted) {
-            books.update(list =>
-              list.filter(book => book.info.id !== data.id)
-            );
+          if (data.isDeleted) {
+            this.deleteBookFromList(data, books);
           } else if (data.id) {
-            books.update(list => {
-              const index = list.findIndex(book => book.info.id === data.id);
-
-            if (index !== -1) {
-              list[index] = book;
-            }
-
-            return [...list];
-          });
-        } else {
-          books.update(list => [...list, book]);
+            this.updateBookInList(data, books, book);
+          } else {
+            this.addBookToList(books, book);
+          }
         }
+      }),
+    );
+  }
+
+  private deleteBookFromList(
+    data: BookModel,
+    books: WritableSignal<Book[]>,
+  ): void {
+    books.update((list) => list.filter((book) => book.info.id !== data.id));
+  }
+
+  private updateBookInList(
+    data: BookModel,
+    books: WritableSignal<Book[]>,
+    book: Book,
+  ): void {
+    books.update((list) => {
+      const index = list.findIndex((book) => book.info.id === data.id);
+
+      if (index !== -1) {
+        list[index] = book;
       }
-    }));
+
+      return [...list];
+    });
+  }
+
+  private addBookToList(books: WritableSignal<Book[]>, book: Book): void {
+    books.update((list) => [...list, book]);
   }
 
   private createEmptyBookModel(): BookModel {
@@ -80,7 +96,7 @@ export class AddEditBookService {
 
   private getBookFromDialogData(
     data: BookModel,
-    books: WritableSignal<Book[]>
+    books: WritableSignal<Book[]>,
   ): Book {
     const { id, authorName, authorSurname, title } = data;
 
@@ -93,13 +109,12 @@ export class AddEditBookService {
       pages: data.pages.toString(),
       info: {
         id: id || this.generateId(books),
-      }
+      },
     };
   }
 
   private generateId(books: WritableSignal<Book[]>): string {
-    const numbersArray: number[] = books()
-      .map(book => Number(book.info.id));
+    const numbersArray: number[] = books().map((book) => Number(book.info.id));
     const highestNumber = Math.max(...numbersArray);
     const newId = highestNumber + 1;
 

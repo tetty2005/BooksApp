@@ -1,38 +1,45 @@
 <h1 class="page-title">Books List</h1>
 
 <section class="actions">
-    <div>
-        <button matButton="filled" type="button" (click)="fileInput.click()">Choose File</button>
-    </div>
-    <div>
-        <button matButton="filled" extended (click)="addBook()">
-            <mat-icon>control_point</mat-icon>
-            Add a new book
-        </button>
-    </div>
+  <div>
+    <button matButton="filled" type="button" (click)="fileInput.click()">
+      Choose File
+    </button>
+  </div>
+  <div>
+    <button matButton="filled" extended (click)="addBook()">
+      <mat-icon>control_point</mat-icon>
+      Add a new book
+    </button>
+  </div>
 </section>
 
 <section>
-    <input 
-    type="file" 
-    #fileInput 
-    style="display: none" 
+  <input
+    type="file"
+    #fileInput
+    style="display: none"
     (change)="onFileSelected($event)"
     accept=".xml"
-    />
+  />
 </section>
 
 <section class="empty-list">
-    @if (!books().length) {
-        <mat-card appearance="outlined">
-            <mat-card-header>
-                <mat-card-title> There are no books to display.</mat-card-title>
-                <mat-card-subtitle>Please add a book or download a file with books.</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
-    }
+  @if (!books().length) {
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title> There are no books to display.</mat-card-title>
+        <mat-card-subtitle
+          >Please add a book or download a file with books.</mat-card-subtitle
+        >
+      </mat-card-header>
+    </mat-card>
+  }
 </section>
 
 @if (books().length) {
-    <app-books-list [books]="books()" (selectBook)="selectBook($event)"></app-books-list>
+  <app-books-list
+    [books]="books()"
+    (selectBook)="selectBook($event)"
+  ></app-books-list>
 }

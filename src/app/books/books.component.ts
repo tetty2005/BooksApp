@@ -11,7 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BooksListComponent } from './components/books-list/books-list.component';
 import { Book } from './interfaces/Book';
 import { ParserService } from './services/parser.service';
-import { AddEditBookService } from './services/addEditBook.service';
+import { AddEditBookService } from './services/add-edit-book.service';
 
 @Component({
   selector: 'app-books',

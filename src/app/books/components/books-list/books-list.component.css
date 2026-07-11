@@ -29,11 +29,49 @@
 }
 
 .cdk-header-row {
-    font-weight: bold;
-    background-color: #B7C9E2;
-    height: 40px;
+  font-weight: bold;
+  background-color: #b7c9e2;
+  height: 40px;
 }
 
-.mat-mdc-form-field {
-  width: 50%;
+mat-form-field.search-field {
+  align-self: center;
+  width: 90%;
+}
+
+.search-section {
+  display: flex;
+  justify-content: space-between;
+
+  mat-card {
+    width: 48%;
+    margin-bottom: 20px;
+    padding: 0 20px;
+
+    mat-card-header {
+      padding: 10px 16px 16px;
+      color: grey;
+      font-weight: 200;
+      font-size: 14px;
+    }
+
+    mat-card-content {
+      padding-bottom: 0;
+
+      button {
+        height: 54px;
+        border-radius: 10px;
+      }
+    }
+
+    .sort-buttons {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        flex: 1;
+        margin: 0 5px;
+      }
+    }
+  }
 }
