@@ -33,8 +33,7 @@ export class BooksComponent implements OnDestroy {
   uploadService = inject(UploadLibraryService);
   downloadService = inject(DownloadLibraryService);
   books = this.uploadService.books;
-
-  private addEditBookService = inject(AddEditBookService);
+  addEditBookService = inject(AddEditBookService);
 
   readonly dialog = inject(MatDialog);
 

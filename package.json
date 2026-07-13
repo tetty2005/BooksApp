@@ -21,6 +21,8 @@
     "@angular/router": "^22.0.6",
     "events": "^3.3.0",
     "rxjs": "~7.8.0",
+    "stream": "^0.0.3",
+    "timers": "^0.1.1",
     "tslib": "^2.3.0",
     "xml2js": "^0.6.2",
     "zone.js": "~0.15.0"
@@ -42,6 +44,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "^3.9.5",
+    "timers-browserify": "^2.0.12",
     "typescript": "~6.0.3",
     "typescript-eslint": "8.60.1"
   }
